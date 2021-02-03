@@ -13,6 +13,7 @@ PropTypes<br>
 ESLint & Prettier<br>
 Husky for Pre-commit lint&formatting of changed files<br>
 SEO support through Helmet<br>
+Continous Integration - GitHub Action<br>
 Env Files<br>
 
 ## Setup
@@ -31,6 +32,23 @@ Run `npm i` to install all dependencies<br>
 Run `npm run dev` to run app in development mode<br>
 Run `npm run start` to serve files to `/public` folder<br>
 Run `npm run test` to run tests<br>
+
+You can run commands bellow manually, or they will run automatically with pre-commit hook(included in the app already!):
+
+`npm run lint` to run ESLint<br>
+`npm run format` to run Prettier formatter<br>
+
+## Future Features
+
+### In plans
+
+- Formik
+
+### Maybe?
+
+- Styled components
+- Material UI
+- React DnD
 
 ## Questions
 
