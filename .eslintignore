@@ -2,5 +2,5 @@
 package-lock.json
 .env
 /coverage/
-build/
+public/
 bin/

@@ -17,7 +17,7 @@
     "test:coverage": "jest --coverage",
     "presetup": "npm i shelljs compare-versions",
     "setup": "node ./bin/setup.js",
-    "lint": "eslint  --fix src/**/*.js",
+    "lint": "eslint --ext .js,.jsx . --fix src/**/*.js",
     "format": "prettier src/**/*.js --write --config ./.prettierrc"
   },
   "keywords": [],
