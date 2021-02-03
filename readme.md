@@ -9,6 +9,7 @@ Webpack 5<br>
 SCSS<br>
 Jest/React Testing Library<br>
 Axios & React-Query<br>
+Formik<br>
 PropTypes<br>
 ESLint & Prettier<br>
 Husky for Pre-commit lint&formatting of changed files<br>
@@ -39,10 +40,6 @@ You can run commands bellow manually, or they will run automatically with pre-co
 `npm run format` to run Prettier formatter<br>
 
 ## Future Features
-
-### In plans
-
-- Formik
 
 ### Maybe?
 
