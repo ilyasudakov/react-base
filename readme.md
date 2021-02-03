@@ -1,6 +1,6 @@
 # Basic React Boilerplate
 
-Simple minimalistic React boilerplate app, that hopefully will make your development easier and faster
+Simple React boilerplate app, that hopefully will make your development easier and faster
 
 ## Features
 
