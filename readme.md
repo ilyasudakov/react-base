@@ -48,8 +48,9 @@ You can run commands bellow manually, or they will run automatically with pre-co
 
 ### Maybe?
 
-- Material UI
 - React DnD
+- Some Animation library
+- Material UI
 
 ## Questions
 
