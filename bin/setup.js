@@ -5,7 +5,7 @@ const path = require("path");
 const fs = require("fs");
 const readline = require("readline");
 const compareVersions = require("compare-versions");
-// const shell = require("shelljs");
+const shell = require("shelljs");
 // const chalk = require("chalk");
 
 const npmConfig = require("./helpers/get_npm_config.js");
@@ -23,13 +23,29 @@ function deleteFileInCurrentDir(file) {
   });
 }
 
+function hasGitRepository() {
+  return new Promise((resolve, reject) => {
+    exec("git status", (err, stdout) => {
+      if (err) {
+        reject(new Error(err));
+      }
+
+      const regex = new RegExp(/fatal:\s+Not\s+a\s+git\s+repository/, "i");
+
+      /* eslint-disable-next-line no-unused-expressions */
+      regex.test(stdout) ? resolve(false) : resolve(true);
+    });
+  });
+}
+
 function removeGitRepository() {
   return new Promise((resolve, reject) => {
-    exec("rm -rf .git/", (error) => {
-      if (error) reject(new Error(error));
-
+    try {
+      shell.rm("-rf", ".git/");
       resolve();
-    });
+    } catch (err) {
+      reject(err);
+    }
   });
 }
 
@@ -177,7 +193,8 @@ function reportError(error) {
 
   if (error) {
     process.stdout.write("\n\n");
-    addXMark(() => process.stderr.write(chalk.red(` ${error}\n`)));
+    process.stderr.write(` ${error}\n`);
+    // addXMark(() => process.stderr.write(chalk.red(` ${error}\n`)));
     process.exit(1);
   }
 }

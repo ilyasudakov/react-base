@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "React + Webpack 5 + SCSS + Jest/RTL",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ilyasudakov/basic-react-boilerplate.git"
+  },
   "scripts": {
     "start": "webpack serve",
     "build": "webpack",
@@ -36,11 +40,16 @@
     "webpack-cli": "^4.5.0",
     "webpack-dev-server": "^3.11.2"
   },
+  "engines": {
+    "npm": ">=5",
+    "node": ">=8.15.1"
+  },
   "dependencies": {
     "compare-versions": "^3.6.0",
     "dotenv": "^8.2.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "shelljs": "^0.8.4"
   }
 }
