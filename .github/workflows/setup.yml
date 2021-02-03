@@ -20,6 +20,8 @@ jobs:
           node-version: 12
       - name: Run setup script
         run: npm run setup
+      - name: Delete old repo
+        run: y
       - name: Run all test cases
         run: npm run test -- --silent
       - name: Build app
