@@ -13,7 +13,7 @@ export const App = () => {
     >
       <div>
         <Helmet>
-          <title>{`My App`}</title>
+          <title>My App</title>
           <meta
             name="description"
             content="This is what you want to show as the page content in the Google SERP Listing"

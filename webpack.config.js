@@ -47,5 +47,9 @@ module.exports = {
   ],
   resolve: {
     extensions: ['.js', '.scss', 'jsx'],
+    alias: {
+      Components: path.resolve(__dirname, '/src/components'),
+      Utils: path.resolve(__dirname, '/src/utils'),
+    },
   },
 };

@@ -1,6 +1,6 @@
 # Basic React Boilerplate
 
-Simple minimalistic React boilerplate app, that hopefully can make your development easier
+Simple React boilerplate app, that hopefully will make your development easier and faster
 
 ## Features
 
@@ -48,8 +48,9 @@ You can run commands bellow manually, or they will run automatically with pre-co
 
 ### Maybe?
 
-- Material UI
 - React DnD
+- Some Animation library
+- Material UI
 
 ## Questions
 
