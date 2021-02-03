@@ -15,6 +15,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
+    "presetup": "npm i shelljs compare-versions",
     "setup": "node ./bin/setup.js"
   },
   "keywords": [],
