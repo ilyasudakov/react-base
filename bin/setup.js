@@ -144,6 +144,21 @@ function commitToGitRepository() {
   });
 }
 
+function openVSCode() {
+  return new Promise((resolve, reject) => {
+    process.stdout.write(
+      "\nOpening VSCode"
+    );
+    exec('code .', (err, stdout) => {
+      if (err) {
+        reject(new Error(err));
+      } else {
+        resolve(stdout);
+      }
+    });
+  });
+}
+
 function checkNodeVersion(minimalNodeVersion) {
   return new Promise((resolve, reject) => {
     exec("node --version", (err, stdout) => {
@@ -235,6 +250,7 @@ function reportError(error) {
       reportError(err);
     }
 
+    openVSCode();
     // addCheckMark();
     clearInterval(interval);
   }
