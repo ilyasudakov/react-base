@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "webpack serve",
-    "build": "webpack --mode production",
+    "build": "webpack",
     "dev": "webpack serve --mode development",
     "watch": "webpack --watch",
     "test": "jest",
