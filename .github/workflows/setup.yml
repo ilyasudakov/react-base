@@ -18,8 +18,8 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 12
-      - name: Install all dependencies
-        run: npm i
+      - name: Run setup script
+        run: npm run setup
       - name: Run all test cases
         run: npm run test -- --silent
       - name: Build app
