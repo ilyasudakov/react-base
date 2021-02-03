@@ -52,3 +52,7 @@ You can run commands bellow manually, or they will run automatically with pre-co
 - Q: Why no Redux?
 
   A: Too much boilercode, hard to maintain and slow to code. Rather use React-Query, which fetches, parses, caches data for you. Or in case if you need global storage for your app, React Context will probably do fine , but in huge apps where global state changes frequently - Redux is probably better option
+
+- Q: Why use this exact boilerplate?
+
+  A: This is perfect barebones boilerplate i wanted in my development, which could be helpful for you. Its pretty much just a skeleton, so you can build up your own structure and project. I hope this project gives pretty quick start to code stuff
