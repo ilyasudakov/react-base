@@ -9,6 +9,12 @@ Jest/React Testing Library<br>
 Env Files<br>
 PropTypes<br>
 
+## Setup
+
+Run `git clone https://github.com/ilyasudakov/basic-react-boilerplate.git` to clone repository<br>
+Run `npm run setup` to initiate setup process, where you can create new repo if you want to<br>
+Then you can `npm run start` to view template app
+
 ## Commands
 
 Run `npm i` to install all dependencies<br>
