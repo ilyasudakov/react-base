@@ -6,8 +6,10 @@ React v17<br>
 Webpack 5<br>
 SCSS<br>
 Jest/React Testing Library<br>
+Axios & React-Query<br>
 PropTypes<br>
 ESLint & Prettier<br>
+Husky for Pre-commit lint&formatting of changed files<br>
 Env Files<br>
 
 ## Setup
