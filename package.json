@@ -80,6 +80,10 @@
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
     "react-query": "^3.6.0",
-    "shelljs": "^0.8.4"
+    "shelljs": "^0.8.4",
+    "styled-components": "^5.2.1"
+  },
+  "resolutions": {
+    "styled-components": "^5"
   }
 }

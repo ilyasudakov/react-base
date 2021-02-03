@@ -10,11 +10,12 @@ SCSS<br>
 Jest/React Testing Library<br>
 Axios & React-Query<br>
 Formik<br>
-PropTypes<br>
+Styled-components<br>
 ESLint & Prettier<br>
 Husky for Pre-commit lint&formatting of changed files<br>
 SEO support through Helmet<br>
 Continous Integration - GitHub Action<br>
+PropTypes<br>
 Env Files<br>
 
 ## Setup
@@ -41,9 +42,12 @@ You can run commands bellow manually, or they will run automatically with pre-co
 
 ## Future Features
 
+### In Plans
+
+- TypeScript
+
 ### Maybe?
 
-- Styled components
 - Material UI
 - React DnD
 
