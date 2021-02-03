@@ -236,6 +236,9 @@ function reportError(error) {
   await deleteFileInCurrentDir("setup.js").catch((reason) =>
     reportError(reason)
   );
+  await deleteFileInCurrentDir("../.github/workflows/setup.yml").catch((reason) =>
+    reportError(reason)
+  );
 
   if (repoRemoved) {
     process.stdout.write("\n");
