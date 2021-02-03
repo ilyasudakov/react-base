@@ -1,5 +1,7 @@
 # Basic React Boilerplate
 
+Simple minimalistic React boilerplate app, that hopefully can make your development easier
+
 ## Features
 
 React v17<br>
@@ -34,4 +36,4 @@ Run `npm run test` to run tests<br>
 
 - Q: Why no Redux?
 
-  A: Too much boilercode, hard to maintain and slow to code. Rather use React-Query, which fetches, parses, caches data for you. Or in case if need global storage for your app, React Context will probably do fine , but in huge apps where global state changes frequently - Redux is probably better option
+  A: Too much boilercode, hard to maintain and slow to code. Rather use React-Query, which fetches, parses, caches data for you. Or in case if you need global storage for your app, React Context will probably do fine , but in huge apps where global state changes frequently - Redux is probably better option

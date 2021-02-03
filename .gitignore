@@ -1,5 +1,11 @@
+# ignore generated modules/files
 /node_modules/
 package-lock.json
-.env
 /coverage/
 /public/
+.env
+
+# IDE stuff
+.DS_Store
+npm-debug.log
+.idea
