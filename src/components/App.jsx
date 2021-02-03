@@ -1,7 +1,18 @@
 import React from 'react';
+const AppContext = React.createContext();
 
-const App = () => {
-  return <div>App</div>;
+export const App = () => {
+  return (
+    <AppContext.Provider
+      value={
+        {
+          //your context state variables go here
+        }
+      }
+    >
+      <div>App</div>
+    </AppContext.Provider>
+  );
 };
 
-export default App;
+export default AppContext;
