@@ -210,8 +210,8 @@ function copyTypeScriptFiles() {
 function removeOldWebpackConfigs() {
   return new Promise((resolve, reject) => {
     try {
-      shell.rm('-rf', '../webpack.config.js');
-      shell.rm('-rf', '../.prettierrc');
+      shell.rm('-rf', 'webpack.config.js');
+      shell.rm('-rf', '.prettierrc');
       resolve();
     } catch (err) {
       reject(err);
