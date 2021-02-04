@@ -1,0 +1,12 @@
+{
+	"compilerOptions": {
+		"outDir": "./public/",
+		"noImplicitAny": true,
+		"target": "es5",
+		"lib": ["es5", "es6", "dom"],
+		"jsx": "react-jsx",
+		"allowJs": true,
+		"moduleResolution": "node",
+		"allowSyntheticDefaultImports": true,
+	}
+}
