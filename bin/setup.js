@@ -180,7 +180,8 @@ function copyTypeScriptFiles() {
       shell.cp('bin/typescript/webpack.dev.ts', 'webpack.dev.ts');
       shell.cp('bin/typescript/webpack.prod.ts', 'webpack.prod.ts');
       shell.cp('bin/typescript/.eslintrc.js', '.eslintrc.js');
-      shell.cp('bin/typescript/.prettierrc.js', '.prettierrc.js');
+      shell.cp('bin/typescript/App.tsx', 'src/components/App.tsx');
+      shell.cp('bin/typescript/index.ts', 'src/index.ts');
       resolve();
     } catch (err) {
       reject(err);
@@ -192,7 +193,8 @@ function removeOldWebpackConfigs() {
   return new Promise((resolve, reject) => {
     try {
       shell.rm('-rf', 'webpack.config.js');
-      shell.rm('-rf', '.prettierrc');
+      shell.rm('-rf', 'src/components/App.jsx');
+      shell.rm('-rf', 'src/index.js');
       resolve();
     } catch (err) {
       reject(err);
