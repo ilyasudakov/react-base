@@ -159,6 +159,48 @@ function openVSCode() {
   });
 }
 
+
+function askUserIfProjectIsUsingTypeScript() {
+  return new Promise((resolve) => {
+    process.stdout.write(
+      "\nAre you gonna be using TypeScript for this project? [Y/n] "
+    );
+    process.stdin.resume();
+    process.stdin.on("data", (pData) => {
+      const answer = pData.toString().trim().toLowerCase() || "y";
+
+      /* eslint-disable-next-line no-unused-expressions */
+      answer === "y" ? resolve(true) : resolve(false);
+    });
+  });
+}
+
+function addTypeScriptToProject() {
+  return new Promise((resolve, reject) => {
+    process.stdout.write("Loading TypeScript packages...");
+    exec("npm install -D awesome-typescript-loader \
+    @types/react @types/react-dom @types/html-webpack-plugin \
+    typescript @types/webpack ts-node", (err) => {
+      if (err) {
+        reject(new Error(err));
+      }
+
+      clearInterval(interval);
+      resolve("TypeScript packages installed");
+    });
+  });
+}
+
+async function makeProjectWithTypeScript() {
+  const answer = await askUserIfProjectIsUsingTypeScript();
+
+  if (answer === true) {
+    await addTypeScriptToProject().catch((reason) => reportError(reason));
+  }
+
+  return answer;
+}
+
 function checkNodeVersion(minimalNodeVersion) {
   return new Promise((resolve, reject) => {
     exec("node --version", (err, stdout) => {
@@ -216,6 +258,7 @@ function reportError(error) {
 
 (async () => {
   const repoRemoved = await cleanCurrentRepository();
+  // const isTypescriptInstalled = await makeProjectWithTypeScript();
 
   // Take the required Node and NPM version from package.json
   const {
