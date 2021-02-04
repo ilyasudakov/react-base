@@ -181,7 +181,7 @@ function copyTypeScriptFiles() {
       shell.cp('bin/typescript/webpack.prod.ts', 'webpack.prod.ts');
       shell.cp('bin/typescript/.eslintrc.js', '.eslintrc.js');
       shell.cp('bin/typescript/App.tsx', 'src/components/App.tsx');
-      shell.cp('bin/typescript/index.ts', 'src/index.ts');
+      shell.cp('bin/typescript/index.tsx', 'src/index.tsx');
       resolve();
     } catch (err) {
       reject(err);
