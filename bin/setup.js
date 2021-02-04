@@ -172,25 +172,6 @@ function askUserIfProjectIsUsingTypeScript() {
   });
 }
 
-function addTypeScriptToProject() {
-  return new Promise((resolve, reject) => {
-    process.stdout.write('Loading TypeScript packages...');
-    exec(
-      'npm install -D awesome-typescript-loader \
-    @types/react @types/react-dom @types/html-webpack-plugin \
-    typescript @types/webpack ts-node',
-      (err) => {
-        if (err) {
-          reject(new Error(err));
-        }
-
-        clearInterval(interval);
-        resolve('TypeScript packages installed');
-      },
-    );
-  });
-}
-
 function copyTypeScriptFiles() {
   return new Promise((resolve, reject) => {
     try {
@@ -223,7 +204,7 @@ async function makeProjectWithTypeScript() {
   const answer = await askUserIfProjectIsUsingTypeScript();
 
   if (answer === true) {
-    await addTypeScriptToProject().catch((reason) => reportError(reason));
+    process.stdout.write('Loading TypeScript configs...');
     await copyTypeScriptFiles().catch((reason) => reportError(reason));
     await removeOldWebpackConfigs().catch((reason) => reportError(reason));
   }
@@ -314,9 +295,6 @@ function reportError(error) {
   await deleteFileInCurrentDir('setup.js').catch((reason) =>
     reportError(reason),
   );
-  await deleteFileInCurrentDir(
-    '../.github/workflows/setup.yml',
-  ).catch((reason) => reportError(reason));
 
   if (repoRemoved) {
     process.stdout.write('\n');
@@ -331,10 +309,10 @@ function reportError(error) {
       reportError(err);
     }
 
-    openVSCode();
     // addCheckMark();
     clearInterval(interval);
   }
 
+  openVSCode();
   endProcess();
 })();
