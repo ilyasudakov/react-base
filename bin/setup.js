@@ -194,12 +194,12 @@ function addTypeScriptToProject() {
 function copyTypeScriptFiles() {
   return new Promise((resolve, reject) => {
     try {
-      shell.cp('./typescript/package.json', '../package.json');
-      shell.cp('./typescript/tsconfig.json', '../tsconfig.json');
-      shell.cp('./typescript/webpack.dev.ts', '../webpack.dev.ts');
-      shell.cp('./typescript/webpack.prod.ts', '../webpack.prod.ts');
-      shell.cp('./typescript/.eslintrc.js', '../.eslintrc.js');
-      shell.cp('./typescript/.prettierrc.js', '../.prettierrc.js');
+      shell.cp('bin/typescript/package.json', 'package.json');
+      shell.cp('bin/typescript/tsconfig.json', 'tsconfig.json');
+      shell.cp('bin/typescript/webpack.dev.ts', 'webpack.dev.ts');
+      shell.cp('bin/typescript/webpack.prod.ts', 'webpack.prod.ts');
+      shell.cp('bin/typescript/.eslintrc.js', '.eslintrc.js');
+      shell.cp('bin/typescript/.prettierrc.js', '.prettierrc.js');
       resolve();
     } catch (err) {
       reject(err);
