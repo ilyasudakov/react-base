@@ -3,6 +3,6 @@
 public/
 node_modules/
 internals/generators/
-bin/
+bin/typescript/
 package-lock.json
 package.json

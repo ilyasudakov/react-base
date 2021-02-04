@@ -1,19 +1,19 @@
 #!/usr/bin/env node
 
-const { exec } = require("child_process");
-const path = require("path");
-const fs = require("fs");
-const readline = require("readline");
-const compareVersions = require("compare-versions");
-const shell = require("shelljs");
+const { exec } = require('child_process');
+const path = require('path');
+const fs = require('fs');
+const readline = require('readline');
+const compareVersions = require('compare-versions');
+const shell = require('shelljs');
 // const chalk = require("chalk");
 
-const npmConfig = require("./helpers/get_npm_config.js");
+const npmConfig = require('./helpers/get_npm_config.js');
 
 process.stdin.resume();
-process.stdin.setEncoding("utf8");
+process.stdin.setEncoding('utf8');
 
-process.stdout.write("\n");
+process.stdout.write('\n');
 let interval = -1;
 
 function deleteFileInCurrentDir(file) {
@@ -25,12 +25,12 @@ function deleteFileInCurrentDir(file) {
 
 function hasGitRepository() {
   return new Promise((resolve, reject) => {
-    exec("git status", (err, stdout) => {
+    exec('git status', (err, stdout) => {
       if (err) {
         reject(new Error(err));
       }
 
-      const regex = new RegExp(/fatal:\s+Not\s+a\s+git\s+repository/, "i");
+      const regex = new RegExp(/fatal:\s+Not\s+a\s+git\s+repository/, 'i');
 
       /* eslint-disable-next-line no-unused-expressions */
       regex.test(stdout) ? resolve(false) : resolve(true);
@@ -41,7 +41,7 @@ function hasGitRepository() {
 function removeGitRepository() {
   return new Promise((resolve, reject) => {
     try {
-      shell.rm("-rf", ".git/");
+      shell.rm('-rf', '.git/');
       resolve();
     } catch (err) {
       reject(err);
@@ -52,21 +52,21 @@ function removeGitRepository() {
 function askUserIfWeShouldRemoveRepo() {
   return new Promise((resolve) => {
     process.stdout.write(
-      "\nDo you want to start with a new repository? [Y/n] "
+      '\nDo you want to start with a new repository? [Y/n] ',
     );
     process.stdin.resume();
-    process.stdin.on("data", (pData) => {
-      const answer = pData.toString().trim().toLowerCase() || "y";
+    process.stdin.on('data', (pData) => {
+      const answer = pData.toString().trim().toLowerCase() || 'y';
 
       /* eslint-disable-next-line no-unused-expressions */
-      answer === "y" ? resolve(true) : resolve(false);
+      answer === 'y' ? resolve(true) : resolve(false);
     });
   });
 }
 
 async function cleanCurrentRepository() {
   const hasGitRepo = await hasGitRepository().catch((reason) =>
-    reportError(reason)
+    reportError(reason),
   );
 
   // We are not under Git version control. So, do nothing
@@ -77,7 +77,7 @@ async function cleanCurrentRepository() {
   const answer = await askUserIfWeShouldRemoveRepo();
 
   if (answer === true) {
-    process.stdout.write("Removing current repository");
+    process.stdout.write('Removing current repository');
     await removeGitRepository().catch((reason) => reportError(reason));
     // addCheckMark();
   }
@@ -88,7 +88,7 @@ async function cleanCurrentRepository() {
 function installPackages() {
   return new Promise((resolve, reject) => {
     process.stdout.write(
-      "\nInstalling dependencies... (This might take a while)"
+      '\nInstalling dependencies... (This might take a while)',
     );
 
     setTimeout(() => {
@@ -96,21 +96,21 @@ function installPackages() {
       // interval = animateProgress("Installing dependencies");
     }, 500);
 
-    exec("npm install", (err) => {
+    exec('npm install', (err) => {
       if (err) {
         reject(new Error(err));
       }
 
       clearInterval(interval);
       //   addCheckMark();
-      resolve("Packages installed");
+      resolve('Packages installed');
     });
   });
 }
 
 function initGitRepository() {
   return new Promise((resolve, reject) => {
-    exec("git init", (err, stdout) => {
+    exec('git init', (err, stdout) => {
       if (err) {
         reject(new Error(err));
       } else {
@@ -122,7 +122,7 @@ function initGitRepository() {
 
 function addToGitRepository() {
   return new Promise((resolve, reject) => {
-    exec("git add .", (err, stdout) => {
+    exec('git add .', (err, stdout) => {
       if (err) {
         reject(new Error(err));
       } else {
@@ -146,9 +146,7 @@ function commitToGitRepository() {
 
 function openVSCode() {
   return new Promise((resolve, reject) => {
-    process.stdout.write(
-      "\nOpening VSCode"
-    );
+    process.stdout.write('\nOpening VSCode');
     exec('code .', (err, stdout) => {
       if (err) {
         reject(new Error(err));
@@ -159,35 +157,65 @@ function openVSCode() {
   });
 }
 
-
 function askUserIfProjectIsUsingTypeScript() {
   return new Promise((resolve) => {
     process.stdout.write(
-      "\nAre you gonna be using TypeScript for this project? [Y/n] "
+      '\nAre you gonna be using TypeScript for this project? [Y/n] ',
     );
     process.stdin.resume();
-    process.stdin.on("data", (pData) => {
-      const answer = pData.toString().trim().toLowerCase() || "y";
+    process.stdin.on('data', (pData) => {
+      const answer = pData.toString().trim().toLowerCase() || 'y';
 
       /* eslint-disable-next-line no-unused-expressions */
-      answer === "y" ? resolve(true) : resolve(false);
+      answer === 'y' ? resolve(true) : resolve(false);
     });
   });
 }
 
 function addTypeScriptToProject() {
   return new Promise((resolve, reject) => {
-    process.stdout.write("Loading TypeScript packages...");
-    exec("npm install -D awesome-typescript-loader \
+    process.stdout.write('Loading TypeScript packages...');
+    exec(
+      'npm install -D awesome-typescript-loader \
     @types/react @types/react-dom @types/html-webpack-plugin \
-    typescript @types/webpack ts-node", (err) => {
-      if (err) {
-        reject(new Error(err));
-      }
+    typescript @types/webpack ts-node',
+      (err) => {
+        if (err) {
+          reject(new Error(err));
+        }
 
-      clearInterval(interval);
-      resolve("TypeScript packages installed");
-    });
+        clearInterval(interval);
+        resolve('TypeScript packages installed');
+      },
+    );
+  });
+}
+
+function copyTypeScriptFiles() {
+  return new Promise((resolve, reject) => {
+    try {
+      shell.cp('./typescript/package.json', '../package.json');
+      shell.cp('./typescript/tsconfig.json', '../tsconfig.json');
+      shell.cp('./typescript/webpack.dev.ts', '../webpack.dev.ts');
+      shell.cp('./typescript/webpack.prod.ts', '../webpack.prod.ts');
+      shell.cp('./typescript/.eslintrc.js', '../.eslintrc.js');
+      shell.cp('./typescript/.prettierrc.js', '../.prettierrc.js');
+      resolve();
+    } catch (err) {
+      reject(err);
+    }
+  });
+}
+
+function removeOldWebpackConfigs() {
+  return new Promise((resolve, reject) => {
+    try {
+      shell.rm('-rf', '../webpack.config.js');
+      shell.rm('-rf', '../.prettierrc');
+      resolve();
+    } catch (err) {
+      reject(err);
+    }
   });
 }
 
@@ -196,6 +224,8 @@ async function makeProjectWithTypeScript() {
 
   if (answer === true) {
     await addTypeScriptToProject().catch((reason) => reportError(reason));
+    await copyTypeScriptFiles().catch((reason) => reportError(reason));
+    await removeOldWebpackConfigs().catch((reason) => reportError(reason));
   }
 
   return answer;
@@ -203,45 +233,45 @@ async function makeProjectWithTypeScript() {
 
 function checkNodeVersion(minimalNodeVersion) {
   return new Promise((resolve, reject) => {
-    exec("node --version", (err, stdout) => {
+    exec('node --version', (err, stdout) => {
       const nodeVersion = stdout.trim();
       if (err) {
         reject(new Error(err));
       } else if (compareVersions(nodeVersion, minimalNodeVersion) === -1) {
         reject(
           new Error(
-            `You need Node.js v${minimalNodeVersion} or above but you have v${nodeVersion}`
-          )
+            `You need Node.js v${minimalNodeVersion} or above but you have v${nodeVersion}`,
+          ),
         );
       }
 
-      resolve("Node version OK");
+      resolve('Node version OK');
     });
   });
 }
 
 function checkNpmVersion(minimalNpmVersion) {
   return new Promise((resolve, reject) => {
-    exec("npm --version", (err, stdout) => {
+    exec('npm --version', (err, stdout) => {
       const npmVersion = stdout.trim();
       if (err) {
         reject(new Error(err));
       } else if (compareVersions(npmVersion, minimalNpmVersion) === -1) {
         reject(
           new Error(
-            `You need NPM v${minimalNpmVersion} or above but you have v${npmVersion}`
-          )
+            `You need NPM v${minimalNpmVersion} or above but you have v${npmVersion}`,
+          ),
         );
       }
 
-      resolve("NPM version OK");
+      resolve('NPM version OK');
     });
   });
 }
 
 function endProcess() {
   clearInterval(interval);
-  process.stdout.write("\n\nDone!\n");
+  process.stdout.write('\n\nDone!\n');
   process.exit(0);
 }
 
@@ -249,7 +279,7 @@ function reportError(error) {
   clearInterval(interval);
 
   if (error) {
-    process.stdout.write("\n\n");
+    process.stdout.write('\n\n');
     process.stderr.write(` ${error}\n`);
     // addXMark(() => process.stderr.write(chalk.red(` ${error}\n`)));
     process.exit(1);
@@ -258,7 +288,12 @@ function reportError(error) {
 
 (async () => {
   const repoRemoved = await cleanCurrentRepository();
-  // const isTypescriptInstalled = await makeProjectWithTypeScript();
+  const isTypescriptInstalled = await makeProjectWithTypeScript();
+
+  if (isTypescriptInstalled) {
+    process.stdout.write('\n');
+    process.stdout.write('TypeScript is installed');
+  }
 
   // Take the required Node and NPM version from package.json
   const {
@@ -267,26 +302,26 @@ function reportError(error) {
 
   const requiredNodeVersion = node.match(/([0-9.]+)/g)[0];
   await checkNodeVersion(requiredNodeVersion).catch((reason) =>
-    reportError(reason)
+    reportError(reason),
   );
 
   const requiredNpmVersion = npm.match(/([0-9.]+)/g)[0];
   await checkNpmVersion(requiredNpmVersion).catch((reason) =>
-    reportError(reason)
+    reportError(reason),
   );
 
   await installPackages().catch((reason) => reportError(reason));
-  await deleteFileInCurrentDir("setup.js").catch((reason) =>
-    reportError(reason)
+  await deleteFileInCurrentDir('setup.js').catch((reason) =>
+    reportError(reason),
   );
-  await deleteFileInCurrentDir("../.github/workflows/setup.yml").catch((reason) =>
-    reportError(reason)
-  );
+  await deleteFileInCurrentDir(
+    '../.github/workflows/setup.yml',
+  ).catch((reason) => reportError(reason));
 
   if (repoRemoved) {
-    process.stdout.write("\n");
+    process.stdout.write('\n');
     // interval = animateProgress("Initialising new repository");
-    process.stdout.write("Initialising new repository");
+    process.stdout.write('Initialising new repository');
 
     try {
       await initGitRepository();
