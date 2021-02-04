@@ -2,7 +2,7 @@
   "name": "basic_react_boilerplate",
   "version": "1.0.0",
   "description": "React + Webpack 5 + SCSS + Jest/RTL",
-  "main": "index.js",
+  "main": "index.tsx",
   "repository": {
     "type": "git",
     "url": "git://github.com/ilyasudakov/basic-react-boilerplate.git"
