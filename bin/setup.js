@@ -212,6 +212,17 @@ async function makeProjectWithTypeScript() {
   return answer;
 }
 
+function removeSetupFiles() {
+  return new Promise((resolve, reject) => {
+    try {
+      shell.rm('-rf', 'bin/');
+      resolve();
+    } catch (err) {
+      reject(err);
+    }
+  });
+}
+
 function checkNodeVersion(minimalNodeVersion) {
   return new Promise((resolve, reject) => {
     exec('node --version', (err, stdout) => {
@@ -292,9 +303,10 @@ function reportError(error) {
   );
 
   await installPackages().catch((reason) => reportError(reason));
-  await deleteFileInCurrentDir('setup.js').catch((reason) =>
-    reportError(reason),
-  );
+  await removeSetupFiles().catch((reason) => reportError(reason));
+  // await deleteFileInCurrentDir('setup.js').catch((reason) =>
+  //   reportError(reason),
+  // );
 
   if (repoRemoved) {
     process.stdout.write('\n');
