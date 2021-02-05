@@ -1,4 +1,6 @@
-# React-Base
+# react-base [![Maintainability](https://api.codeclimate.com/v1/badges/189ab4185c34a62912ad/maintainability)](https://codeclimate.com/github/ilyasudakov/react-base/maintainability) ![Depfu](https://img.shields.io/depfu/ilyasudakov/react-base) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/ilyasudakov/react-base/CI)
+
+![logo](public/logo.png)
 
 Simple React boilerplate, that will make your development easier and faster.
 
@@ -11,24 +13,34 @@ Webpack 5<br>
 SCSS<br>
 Jest/React Testing Library<br>
 Axios & React-Query<br>
-Formik<br>
-Styled-components<br>
-ESLint & Prettier<br>
+Formik for forms<br>
+Styled-components for css-in-js<br>
+ESLint & Prettier for automatic linting&formatting<br>
 Husky for Pre-commit lint&formatting of changed files<br>
-SEO support through Helmet<br>
-Continous Integration - GitHub Action<br>
-PropTypes<br>
-Env Files<br>
+Helmet for SEO support<br>
+GitHub Action - for Continous Integration<br>
 
 ## Setup
 
-1. Run `git clone https://github.com/ilyasudakov/basic-react-boilerplate.git <YOUR_PROJECT_NAME>` to clone repository<br>
+Clone the repository
 
-2. Change working directory to your project directory `cd <YOUR_PROJECT_NAME>`<br>
+```
+git clone https://github.com/ilyasudakov/basic-react-boilerplate.git <YOUR_PROJECT_NAME>
 
-3. Run `npm run setup` to initiate setup process, where you can create new repo if you want to<br>
+cd <YOUR_PROJECT_NAME>
+```
 
-4. Then you can `npm run start` to view template app
+Initiate setup process, where you can create new repo if you want to
+
+```
+npm run setup
+```
+
+Run the app
+
+```
+npm run start
+```
 
 ## Commands
 
