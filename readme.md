@@ -1,4 +1,6 @@
-# React-Base [![Maintainability](https://api.codeclimate.com/v1/badges/189ab4185c34a62912ad/maintainability)](https://codeclimate.com/github/ilyasudakov/react-base/maintainability) ![Depfu](https://img.shields.io/depfu/ilyasudakov/react-base) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/ilyasudakov/react-base/CI)
+# react-base [![Maintainability](https://api.codeclimate.com/v1/badges/189ab4185c34a62912ad/maintainability)](https://codeclimate.com/github/ilyasudakov/react-base/maintainability) ![Depfu](https://img.shields.io/depfu/ilyasudakov/react-base) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/ilyasudakov/react-base/CI)
+
+![logo](public/logo.png)
 
 Simple React boilerplate, that will make your development easier and faster.
 
