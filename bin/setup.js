@@ -239,6 +239,7 @@ function reportError(error) {
 
   await installPackages().catch((reason) => reportError(reason));
   await removeFilesFromDirectory('bin/').catch((reason) => reportError(reason));
+  await removeFilesFromDirectory('public/assets/logo.png').catch((reason) => reportError(reason));
 
   if (repoRemoved) {
     process.stdout.write('\n');
