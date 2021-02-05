@@ -1,6 +1,8 @@
-# Basic React Boilerplate
+# React-Base
 
-Simple React boilerplate app, that hopefully will make your development easier and faster
+Simple React boilerplate, that will make your development easier and faster.
+
+Easy setup process with option to choose between JavaScript / TypeScript, best libraries for most use cases, and ability to easily change configurations
 
 ## Features
 
