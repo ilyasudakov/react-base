@@ -16,13 +16,6 @@ process.stdin.setEncoding('utf8');
 process.stdout.write('\n');
 let interval = -1;
 
-function deleteFileInCurrentDir(file) {
-  return new Promise((resolve, reject) => {
-    fs.unlink(path.join(__dirname, file), (err) => reject(new Error(err)));
-    resolve();
-  });
-}
-
 function hasGitRepository() {
   return new Promise((resolve, reject) => {
     exec('git status', (err, stdout) => {
@@ -108,33 +101,9 @@ function installPackages() {
   });
 }
 
-function initGitRepository() {
+function actionInGitRepository(command) {
   return new Promise((resolve, reject) => {
-    exec('git init', (err, stdout) => {
-      if (err) {
-        reject(new Error(err));
-      } else {
-        resolve(stdout);
-      }
-    });
-  });
-}
-
-function addToGitRepository() {
-  return new Promise((resolve, reject) => {
-    exec('git add .', (err, stdout) => {
-      if (err) {
-        reject(new Error(err));
-      } else {
-        resolve(stdout);
-      }
-    });
-  });
-}
-
-function commitToGitRepository() {
-  return new Promise((resolve, reject) => {
-    exec('git commit -m "Initial commit"', (err, stdout) => {
+    exec(command, (err, stdout) => {
       if (err) {
         reject(new Error(err));
       } else {
@@ -225,40 +194,27 @@ function removeSetupFiles() {
   });
 }
 
-function checkNodeVersion(minimalNodeVersion) {
+const apps = {
+  npm: { command: 'npm --version', fullName: 'NPM' },
+  node: { command: 'node --version', fullName: 'Node.js' },
+};
+
+function checkAppVersion(minimalVersion, app) {
+  const curApp = apps[app] ?? apps['node'];
   return new Promise((resolve, reject) => {
-    exec('node --version', (err, stdout) => {
-      const nodeVersion = stdout.trim();
+    exec(curApp.command, (err, stdout) => {
+      const version = stdout.trim();
       if (err) {
         reject(new Error(err));
-      } else if (compareVersions(nodeVersion, minimalNodeVersion) === -1) {
+      } else if (compareVersions(version, minimalVersion) === -1) {
         reject(
           new Error(
-            `You need Node.js v${minimalNodeVersion} or above but you have v${nodeVersion}`,
+            `You need ${curApp.fullName} v${minimalVersion} or above but you have v${version}`,
           ),
         );
       }
 
-      resolve('Node version OK');
-    });
-  });
-}
-
-function checkNpmVersion(minimalNpmVersion) {
-  return new Promise((resolve, reject) => {
-    exec('npm --version', (err, stdout) => {
-      const npmVersion = stdout.trim();
-      if (err) {
-        reject(new Error(err));
-      } else if (compareVersions(npmVersion, minimalNpmVersion) === -1) {
-        reject(
-          new Error(
-            `You need NPM v${minimalNpmVersion} or above but you have v${npmVersion}`,
-          ),
-        );
-      }
-
-      resolve('NPM version OK');
+      resolve(`${curApp.fullName} version OK`);
     });
   });
 }
@@ -295,12 +251,12 @@ function reportError(error) {
   } = npmConfig;
 
   const requiredNodeVersion = node.match(/([0-9.]+)/g)[0];
-  await checkNodeVersion(requiredNodeVersion).catch((reason) =>
+  await checkAppVersion(requiredNodeVersion, 'node').catch((reason) =>
     reportError(reason),
   );
 
   const requiredNpmVersion = npm.match(/([0-9.]+)/g)[0];
-  await checkNpmVersion(requiredNpmVersion).catch((reason) =>
+  await checkAppVersion(requiredNpmVersion, 'npm').catch((reason) =>
     reportError(reason),
   );
 
@@ -316,9 +272,9 @@ function reportError(error) {
     process.stdout.write('Initialising new repository');
 
     try {
-      await initGitRepository();
-      await addToGitRepository();
-      await commitToGitRepository();
+      await actionInGitRepository('git init');
+      await actionInGitRepository('git add .');
+      await actionInGitRepository('git commit -m "Initial commit"');
     } catch (err) {
       reportError(err);
     }
