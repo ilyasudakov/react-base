@@ -2,7 +2,8 @@
 /node_modules/
 package-lock.json
 /coverage/
-/public/
+public/*
+!public/assets/
 .env
 
 # IDE stuff
