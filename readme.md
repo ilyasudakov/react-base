@@ -11,14 +11,12 @@ Webpack 5<br>
 SCSS<br>
 Jest/React Testing Library<br>
 Axios & React-Query<br>
-Formik<br>
-Styled-components<br>
-ESLint & Prettier<br>
+Formik for forms<br>
+Styled-components for css-in-js<br>
+ESLint & Prettier for automatic linting&formatting<br>
 Husky for Pre-commit lint&formatting of changed files<br>
-SEO support through Helmet<br>
-Continous Integration - GitHub Action<br>
-PropTypes<br>
-Env Files<br>
+Helmet for SEO support<br>
+GitHub Action - for Continous Integration<br>
 
 ## Setup
 
