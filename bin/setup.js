@@ -6,7 +6,6 @@ const fs = require('fs');
 const readline = require('readline');
 const compareVersions = require('compare-versions');
 const shell = require('shelljs');
-// const chalk = require("chalk");
 
 const npmConfig = require('./helpers/get_npm_config.js');
 
@@ -31,32 +30,6 @@ function hasGitRepository() {
   });
 }
 
-function removeGitRepository() {
-  return new Promise((resolve, reject) => {
-    try {
-      shell.rm('-rf', '.git/');
-      resolve();
-    } catch (err) {
-      reject(err);
-    }
-  });
-}
-
-function askUserIfWeShouldRemoveRepo() {
-  return new Promise((resolve) => {
-    process.stdout.write(
-      '\nDo you want to start with a new repository? [Y/n] ',
-    );
-    process.stdin.resume();
-    process.stdin.on('data', (pData) => {
-      const answer = pData.toString().trim().toLowerCase() || 'y';
-
-      /* eslint-disable-next-line no-unused-expressions */
-      answer === 'y' ? resolve(true) : resolve(false);
-    });
-  });
-}
-
 async function cleanCurrentRepository() {
   const hasGitRepo = await hasGitRepository().catch((reason) =>
     reportError(reason),
@@ -67,11 +40,15 @@ async function cleanCurrentRepository() {
     return false;
   }
 
-  const answer = await askUserIfWeShouldRemoveRepo();
+  const answer = await askUser(
+    '\nDo you want to start with a new repository? [Y/n] ',
+  );
 
   if (answer === true) {
     process.stdout.write('Removing current repository');
-    await removeGitRepository().catch((reason) => reportError(reason));
+    await removeFilesFromDirectory('.git/').catch((reason) =>
+      reportError(reason),
+    );
     // addCheckMark();
   }
 
@@ -126,11 +103,9 @@ function openVSCode() {
   });
 }
 
-function askUserIfProjectIsUsingTypeScript() {
+function askUser(question) {
   return new Promise((resolve) => {
-    process.stdout.write(
-      '\nAre you gonna be using TypeScript for this project? [Y/n] ',
-    );
+    process.stdout.write(question);
     process.stdin.resume();
     process.stdin.on('data', (pData) => {
       const answer = pData.toString().trim().toLowerCase() || 'y';
@@ -172,7 +147,9 @@ function removeOldWebpackConfigs() {
 }
 
 async function makeProjectWithTypeScript() {
-  const answer = await askUserIfProjectIsUsingTypeScript();
+  const answer = await askUser(
+    '\nAre you gonna be using TypeScript for this project? [Y/n] ',
+  );
 
   if (answer === true) {
     process.stdout.write('Loading TypeScript configs...');
@@ -183,10 +160,10 @@ async function makeProjectWithTypeScript() {
   return answer;
 }
 
-function removeSetupFiles() {
+function removeFilesFromDirectory(directory) {
   return new Promise((resolve, reject) => {
     try {
-      shell.rm('-rf', 'bin/');
+      shell.rm('-rf', directory);
       resolve();
     } catch (err) {
       reject(err);
@@ -261,10 +238,7 @@ function reportError(error) {
   );
 
   await installPackages().catch((reason) => reportError(reason));
-  await removeSetupFiles().catch((reason) => reportError(reason));
-  // await deleteFileInCurrentDir('setup.js').catch((reason) =>
-  //   reportError(reason),
-  // );
+  await removeFilesFromDirectory('bin/').catch((reason) => reportError(reason));
 
   if (repoRemoved) {
     process.stdout.write('\n');
