@@ -1,6 +1,8 @@
-# Basic React Boilerplate
+# React-Base
 
-Simple React boilerplate app, that hopefully will make your development easier and faster
+Simple React boilerplate, that will make your development easier and faster.
+
+Easy setup process with option to choose between JavaScript / TypeScript, best libraries for most use cases, and ability to easily change configurations
 
 ## Features
 
@@ -61,3 +63,8 @@ You can run commands bellow manually, or they will run automatically with pre-co
 - Q: Why use this exact boilerplate?
 
   A: This is perfect barebones boilerplate i wanted in my development, which could be helpful for you. Its pretty much just a skeleton, so you can build up your own structure and project. I hope this project gives pretty quick start to code stuff
+
+## Quick How-to
+
+- ### Inline SVG
+  This project supports inline SVGs, to in order to use it in the app, you have to import SVG first: `import Star from './star.svg'`, then use it like this: `<Star className="my-svg" />`
