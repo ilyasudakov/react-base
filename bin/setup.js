@@ -125,6 +125,11 @@ function copyTypeScriptFiles() {
       shell.cp('bin/typescript/webpack.prod.ts', 'webpack.prod.ts');
       shell.cp('bin/typescript/.eslintrc.js', '.eslintrc.js');
       shell.cp('bin/typescript/App.tsx', 'src/components/App.tsx');
+      shell.cp('bin/typescript/App.test.js', 'src/components/App.test.js');
+      shell.cp(
+        'bin/typescript/jest.config.js',
+        'src/components/jest.config.js',
+      );
       shell.cp('bin/typescript/index.tsx', 'src/index.tsx');
       resolve();
     } catch (err) {

@@ -1,4 +1,3 @@
 export const App: React.FC = () => {
-    return <div>MyApp</div>;
-  };
-  
+  return <div>MyApp</div>;
+};
