@@ -11,7 +11,7 @@ const config: webpack.Configuration = {
   mode: "production",
   entry: "./src/index.tsx",
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "public"),
     filename: "bundle.js"
   },
   resolve: {

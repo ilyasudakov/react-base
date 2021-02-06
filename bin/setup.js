@@ -128,7 +128,7 @@ function copyTypeScriptFiles() {
       shell.cp('bin/typescript/App.test.js', 'src/components/App.test.js');
       shell.cp(
         'bin/typescript/jest.config.js',
-        'src/components/jest.config.js',
+        'jest.config.js',
       );
       shell.cp('bin/typescript/index.tsx', 'src/index.tsx');
       resolve();
