@@ -6,3 +6,4 @@ internals/generators/
 bin/typescript/
 package-lock.json
 package.json
+src/setupTests.ts
