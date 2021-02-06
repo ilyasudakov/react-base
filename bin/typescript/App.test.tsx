@@ -1,9 +1,9 @@
 import { render } from '@testing-library/react';
-import { App } from './App.tsx';
+import { App } from './App';
 
 describe('App component', () => {
   test('renders', () => {
     const { getByText } = render(<App />);
-    expect(getByText('App')).toBeInTheDocument();
+    expect(getByText('MyApp')).toBeInTheDocument();
   });
 });

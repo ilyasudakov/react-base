@@ -56,10 +56,6 @@ You can run commands bellow manually, or they will run automatically with pre-co
 
 ## Future Features
 
-### In Testing
-
-- TypeScript
-
 ### Maybe?
 
 - React DnD
