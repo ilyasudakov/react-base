@@ -1,11 +1,11 @@
 {
-  "name": "basic_react_boilerplate",
+  "name": "react-base",
   "version": "1.0.0",
-  "description": "React + Webpack 5 + SCSS + Jest/RTL",
+  "description": "Simple React boilerplate with TS or JS - its your choice, Webpack 5, Jest/RTL, Axios&React-Query, ESLint&Prettier and more",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/ilyasudakov/basic-react-boilerplate.git"
+    "url": "git://github.com/ilyasudakov/react-base.git"
   },
   "scripts": {
     "start": "webpack serve",
