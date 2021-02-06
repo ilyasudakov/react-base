@@ -125,11 +125,9 @@ function copyTypeScriptFiles() {
       shell.cp('bin/typescript/webpack.prod.ts', 'webpack.prod.ts');
       shell.cp('bin/typescript/.eslintrc.js', '.eslintrc.js');
       shell.cp('bin/typescript/App.tsx', 'src/components/App.tsx');
-      shell.cp('bin/typescript/App.test.js', 'src/components/App.test.js');
-      shell.cp(
-        'bin/typescript/jest.config.js',
-        'jest.config.js',
-      );
+      shell.cp('bin/typescript/App.test.tsx', 'src/components/App.test.tsx');
+      shell.cp('bin/typescript/jest.config.js', 'jest.config.js');
+      shell.cp('bin/typescript/setupTests.ts', 'src/setupTests.ts');
       shell.cp('bin/typescript/index.tsx', 'src/index.tsx');
       resolve();
     } catch (err) {
@@ -143,6 +141,8 @@ function removeOldWebpackConfigs() {
     try {
       shell.rm('-rf', 'webpack.config.js');
       shell.rm('-rf', 'src/components/App.jsx');
+      shell.rm('-rf', 'src/components/App.test.js');
+      shell.rm('-rf', 'src/setupTests.js');
       shell.rm('-rf', 'src/index.js');
       resolve();
     } catch (err) {
