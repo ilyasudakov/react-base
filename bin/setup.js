@@ -177,7 +177,10 @@ const apps = {
 };
 
 function checkAppVersion(minimalVersion, app) {
-  const curApp = apps[app] ?? apps['node'];
+  let curApp = apps[app];
+  if (apps[app] === undefined) {
+    curApp = apps['node'];
+  }
   return new Promise((resolve, reject) => {
     exec(curApp.command, (err, stdout) => {
       const version = stdout.trim();
@@ -239,7 +242,6 @@ function reportError(error) {
 
   await installPackages().catch((reason) => reportError(reason));
   await removeFilesFromDirectory('bin/').catch((reason) => reportError(reason));
-  await removeFilesFromDirectory('public/assets/logo.png').catch((reason) => reportError(reason));
 
   if (repoRemoved) {
     process.stdout.write('\n');
