@@ -25,7 +25,7 @@ GitHub Action - for Continous Integration<br>
 Clone the repository
 
 ```
-git clone https://github.com/ilyasudakov/basic-react-boilerplate.git <YOUR_PROJECT_NAME>
+git clone https://github.com/ilyasudakov/react-base.git <YOUR_PROJECT_NAME>
 
 cd <YOUR_PROJECT_NAME>
 ```
@@ -60,21 +60,20 @@ You can run commands bellow manually, or they will run automatically with pre-co
 
 - TypeScript
 
-### In Plans
-
-- ...
-
 ### Maybe?
 
 - React DnD
 - Some Animation library
-- Material UI
 
 ## Questions
 
 - Q: Why no Redux?
 
   A: Too much boilercode, hard to maintain and slow to code. Rather use React-Query, which fetches, parses, caches data for you. Or in case if you need global storage for your app, React Context will probably do fine , but in huge apps where global state changes frequently - Redux is probably better option
+
+- Q: Why use this instead of Create-React-App?
+
+  A: CRA is really cool, but it becomes really frustrating when you want to customize project setup, configs, and here everything is easily accessible
 
 - Q: Why use this exact boilerplate?
 
