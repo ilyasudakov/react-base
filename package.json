@@ -75,7 +75,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "compare-versions": "^3.6.0",
-    "dotenv": "^8.2.0",
+    "dotenv": "^16.0.0",
     "formik": "^2.2.6",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
